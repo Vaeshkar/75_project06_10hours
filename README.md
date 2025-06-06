@@ -4,6 +4,8 @@
 A React-based diary application built with Vite and styled using TailwindCSS.  
 This solo project allows users to create, view, and manage personal diary entries stored in localStorage.  
 
+## Live Demo: [Personal Diary App](https://wbspersonaldiary.netlify.app/)
+
 ## 🚀 Tech Stack
 
 - [React](https://react.dev/)
@@ -55,7 +57,11 @@ Will be deployed as a static site using **Netlify**.
 
 ## 📜 Changelog
 
-### 1.0.0 – Project initialized  
+### 1.0.1 
+
+- Live demo link added
+
+### 1.0.0
 
 - Installed Vite + React  
 - Installed TailwindCSS via npm  
