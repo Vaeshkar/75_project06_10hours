@@ -57,6 +57,19 @@ Will be deployed as a static site using **Netlify**.
 
 ## 📜 Changelog
 
+### 1.0.3
+
+- Added Header component
+- Grid layout for the header
+- Added `GSAP` animations for the header
+
+### 1.0.2
+
+- Added component structure
+- Fixed minor bugs
+- Improved README formatting
+- installed `GSAP` for animations
+
 ### 1.0.1 
 
 - Live demo link added

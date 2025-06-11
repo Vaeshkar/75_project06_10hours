@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useRef } from 'react';
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+
+
+// import components
+import Header from './components/header';
+import Footer from './components/footer';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const titleRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.to(titleRef.current, { opacity: 1, y: 0, duration: 1, ease: "power2.out" });
+  }, { dependencies: [] });
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="max-w-[1200px] mx-auto px-4">
+        <Header />
+        <main className="flex items-center justify-center h-[500px]">
+          <div>
+            <h1
+              ref={titleRef}
+              style={{ opacity: 0, transform: "translateY(-50px)" }}
+              className="text-3xl font-bold text-amber-500"
+            >
+              Personal Diary App
+            </h1>
+          </div>
+        </main>
+        <Footer />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
+
 }
 
-export default App
+export default App;
