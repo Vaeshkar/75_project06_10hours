@@ -2,13 +2,12 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
-
-
 const Header = () => {
   const blueBoxRef = useRef(null);
   const headlineRef = useRef(null);
   const yellowButtonRef = useRef(null);
   const sublineRef = useRef(null);
+  const originalOrderRef = useRef([]);
 
   useGSAP(() => {
     const headlineLetters = headlineRef.current.querySelectorAll("span");
@@ -39,6 +38,40 @@ const Header = () => {
         { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
         "-=0.2"
       );
+
+    let isShuffled = false;
+
+    const animateLetterSwap = (from, to) => {
+      const factor = 0.5; // Try values like 0.2, 0.5, etc.
+
+      gsap.to(from, {
+        x: (to.offsetLeft - from.offsetLeft) * factor,
+        y: (to.offsetTop - from.offsetTop) * factor,
+        duration: 0.4,
+        ease: "power1.inOut"
+      });
+    };
+
+    const shuffleLetters = () => {
+      const letters = Array.from(headlineLetters);
+      if (!originalOrderRef.current.length) {
+        originalOrderRef.current = letters.slice();
+      }
+
+      const targetOrder = isShuffled
+        ? originalOrderRef.current
+        : letters.slice().sort(() => Math.random() - 0.5);
+
+      letters.forEach((letter, i) => {
+        animateLetterSwap(letter, targetOrder[i]);
+        headlineRef.current.appendChild(targetOrder[i]);
+      });
+
+      isShuffled = !isShuffled;
+    };
+
+    const interval = setInterval(shuffleLetters, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -47,6 +80,20 @@ const Header = () => {
         <div
           ref={yellowButtonRef}
           className="rounded-3xl flex items-center justify-center h-full text-black hover:text-[#F9E900] hover:bg-black bg-[#F9E900] transition-colors duration-300 cursor-pointer"
+          onMouseEnter={() => {
+            gsap.fromTo(
+              yellowButtonRef.current,
+              { scale: 1, rotate: -2 },
+              { scale: 1.05, rotate: 2, duration: 0.2, yoyo: true, repeat: 3, ease: "sine.inOut" }
+            );
+          }}
+          onTouchStart={() => {
+            gsap.fromTo(
+              yellowButtonRef.current,
+              { scale: 1, rotate: -2 },
+              { scale: 1.05, rotate: 2, duration: 0.2, yoyo: true, repeat: 3, ease: "sine.inOut" }
+            );
+          }}
         >
           <div className="-rotate-90 font-bold text-[4vw] whitespace-nowrap transition-colors duration-300" style={{ fontSize: '4vw' }}>
             New Entry
