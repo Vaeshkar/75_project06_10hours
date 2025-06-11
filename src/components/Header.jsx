@@ -59,16 +59,16 @@ const Header = () => {
           <h1
             ref={headlineRef}
             className="text-[6vw] font-bold bagel-fat-one-regular uppercase leading-[.8]"
-          style={{ fontSize: '12vw' }}>
-            {"Pers onal Diary".split(" ").map((char, i) => (
-              <span key={i} className="inline-block">{char}</span>
+          style={{ fontSize: '16vw' }}>
+            {"Personal_Diary".split("").map((char, i) => (
+              <span key={`p-${i}`} className="inline-block">{char === "_" ? "\u00A0" : char}</span>
             ))}
           </h1>
           <h3
             ref={sublineRef}    
             className="text-[3vw] font-bold bagel-fat-one-regular mt-4" style={{ fontSize: '5vw' }}>
-            {"One Entry a day".split("").map((char, i) => (
-              <span key={i} className="inline-block">{char}</span>
+            {"One_Entry_a_day".split("").map((char, i) => (
+              <span key={i} className="inline-block">{char === "_" ? "\u00A0" : char}</span>
             ))}
           </h3>
         </div>
