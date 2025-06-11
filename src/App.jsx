@@ -17,7 +17,7 @@ function App() {
 
   return (
     <>
-      <div className="max-w-[1200px] mx-auto px-4">
+      <div className="max-w-[1200px] mx-auto px-4 overflow-x-hidden">
         <Header />
         <main className="flex items-center justify-center h-[500px]">
           <div>
