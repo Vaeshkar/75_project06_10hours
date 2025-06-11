@@ -84,14 +84,14 @@ const Header = () => {
             gsap.fromTo(
               yellowButtonRef.current,
               { scale: 1, rotate: -2 },
-              { scale: 1.05, rotate: 2, duration: 0.2, yoyo: true, repeat: 3, ease: "sine.inOut" }
+              { scale: 1.05, rotate: 2, duration: 0.2, yoyo: true, repeat: 1, ease: "sine.inOut" }
             );
           }}
           onTouchStart={() => {
             gsap.fromTo(
               yellowButtonRef.current,
               { scale: 1, rotate: -2 },
-              { scale: 1.05, rotate: 2, duration: 0.2, yoyo: true, repeat: 3, ease: "sine.inOut" }
+              { scale: 1.05, rotate: 2, duration: 0.2, yoyo: true, repeat: 1, ease: "sine.inOut" }
             );
           }}
         >
