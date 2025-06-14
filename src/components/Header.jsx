@@ -77,7 +77,7 @@ export default function Header(props) {
 
   return (
     <header className="w-full p-4 mx-auto z-0">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-center">
         <div className="md:col-span-1 flex justify-center items-center w-full h-full">
           <AddEntryButton ref={addButtonRef} onClick={props.onAddEntry} />
         </div>
