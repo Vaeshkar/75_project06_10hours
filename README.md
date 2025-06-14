@@ -1,10 +1,9 @@
-
 ## 📝 Personal Diary App
 
 A React-based diary application built with Vite and styled using TailwindCSS.  
 This solo project allows users to create, view, and manage personal diary entries stored in localStorage.  
 
-## Live Demo: [Personal Diary App](https://wbspersonaldiary.netlify.app/)
+## Live Demo: [Personal Diary App](https://wbspersonaldairy.netlify.app/)
 
 ## 🚀 Tech Stack
 
@@ -56,6 +55,15 @@ App
 Will be deployed as a static site using **Netlify**.
 
 ## 📜 Changelog
+
+### 1.0.4
+
+- Completed AddEntry and EditEntry modes with validation and localStorage integration
+- Added check for one entry per day (FR009)
+- Integrated fallback random image logic
+- Implemented GSAP animations for loading screen and entry cards
+- Responsive layout improvements to header and rotated AddEntryButton
+- Fixed various UI/UX bugs
 
 ### 1.0.3
 
