@@ -77,11 +77,13 @@ export default function Header(props) {
 
   return (
     <header className="w-full p-4 mx-auto z-0">
-      <div className="grid grid-cols-3 gap-6">
-        <AddEntryButton ref={addButtonRef} onClick={props.onAddEntry} />
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+        <div className="md:col-span-1 flex justify-center items-center w-full h-full">
+          <AddEntryButton ref={addButtonRef} onClick={props.onAddEntry} />
+        </div>
         <div
           ref={blueBoxRef}
-          className="col-span-2 bg-[#00C2D1] p-4 rounded-3xl tracking-tighter leading-tight text-center max-h-[600px] "
+          className="md:col-span-3 w-full bg-[#00C2D1] p-4 rounded-3xl tracking-tighter leading-tight text-center flex flex-col justify-center"
         >
           <h1
             ref={headlineRef}

@@ -10,8 +10,8 @@ const AddEntryButton = forwardRef(function AddEntryButton(props, ref) {
   useGSAP(() => {
     gsap.fromTo(
       buttonRef.current,
-      { x: -200, opacity: 0 },
-      { x: 0, opacity: 1, duration: 1, ease: 'ease.out' }
+      { y: '-100vh', opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.2, delay: 2.4, ease: 'ease.out' }
     );
   }, []);
 
@@ -40,8 +40,8 @@ const AddEntryButton = forwardRef(function AddEntryButton(props, ref) {
       onClick={props.onClick}
       onMouseEnter={handleMouseEnter}
       onTouchStart={handleMouseEnter}
-      className="bg-yellow-400 text-black px-4 py-2 rounded-3xl cursor-pointer"
-      style={{ fontSize: '4vw' }}
+      className="bg-yellow-400 text-black rounded-3xl cursor-pointer w-full h-full text-[4vw] md:text-[2vw] p-4"
+      style={{ fontSize: 'clamp(1rem, 4vw, 6rem)' }}
     >
       New Entry
     </button>
