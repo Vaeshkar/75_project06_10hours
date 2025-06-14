@@ -41,7 +41,7 @@ const AddEntryButton = forwardRef(function AddEntryButton(props, ref) {
       onMouseEnter={handleMouseEnter}
       onTouchStart={handleMouseEnter}
       className="bg-yellow-400 text-black rounded-3xl cursor-pointer w-full h-full text-[4vw] md:text-[2vw] p-4"
-      style={{ fontSize: 'clamp(1rem, 4vw, 6rem)' }}
+      style={{ fontSize: 'clamp(2rem, -0.5714rem + 11.4286vw, 8rem)' }}
     >
       New Entry
     </button>

@@ -43,13 +43,13 @@ export default function Header(props) {
     let isShuffled = false;
 
     const animateLetterSwap = (from, to) => {
-      const factor = 0.5; // Try values like 0.2, 0.5, etc.
+      const factor = .3; 
 
       gsap.to(from, {
         x: (to.offsetLeft - from.offsetLeft) * factor,
         y: (to.offsetTop - from.offsetTop) * factor,
         duration: 0.4,
-        ease: "power1.inOut"
+        ease: "ease.inOut"
       });
     };
 
@@ -71,7 +71,7 @@ export default function Header(props) {
       isShuffled = !isShuffled;
     };
 
-    const interval = setInterval(shuffleLetters, 5000);
+    const interval = setInterval(shuffleLetters, 15000);
     return () => clearInterval(interval);
   }, []);
 
@@ -88,14 +88,14 @@ export default function Header(props) {
           <h1
             ref={headlineRef}
             className="text-[6vw] font-bold bagel-fat-one-regular uppercase leading-[.8]"
-          style={{ fontSize: 'clamp(4rem, 8vw, 12vw)' }}>
+          style={{ fontSize: 'clamp(5.75rem, 0.5rem + 23.3333vw, 18rem)' }}>
             {"Personal_Diary".split("").map((char, i) => (
               <span key={`p-${i}`} className="inline-block">{char === "_" ? "\u00A0" : char}</span>
             ))}
           </h1>
           <h3
-            ref={sublineRef}    
-            className="text-[3vw] font-bold bagel-fat-one-regular mt-4" style={{ fontSize: 'clamp(1rem, 2vw, 4vw)' }}>
+            ref={sublineRef}
+            className="text-[3vw] font-bold bagel-fat-one-regular mt-4" style={{ fontSize: 'clamp(2.5rem, 0.5714rem + 8.5714vw, 7rem)' }}>
             {"One_Entry_a_day".split("").map((char, i) => (
               <span key={i} className="inline-block">{char === "_" ? "\u00A0" : char}</span>
             ))}
