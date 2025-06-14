@@ -40,10 +40,14 @@ const AddEntryButton = forwardRef(function AddEntryButton(props, ref) {
       onClick={props.onClick}
       onMouseEnter={handleMouseEnter}
       onTouchStart={handleMouseEnter}
-      className="bg-yellow-400 text-black rounded-3xl cursor-pointer w-full h-full text-[4vw] md:text-[2vw] p-4"
+      className="relative bg-yellow-400 text-black rounded-3xl cursor-pointer w-full h-full"
       style={{ fontSize: 'clamp(2rem, -0.5714rem + 11.4286vw, 8rem)' }}
     >
-      New Entry
+        <span className='inline-block md:-rotate-90 md:-ml-[40%]'>
+        {"New_Entry".split("").map((char, i) => (
+              <span key={`p-${i}`} className="">{char === "_" ? "\u00A0" : char}</span>
+            ))}
+        </span>
     </button>
   );
 });
