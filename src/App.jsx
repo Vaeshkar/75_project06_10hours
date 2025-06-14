@@ -27,11 +27,21 @@ export default function App() {
 
   const handleAddEntry = (entryData) => {
     setIsLoading(true); // Start loading animation
+    const entryDate = entryData.date || new Date().toISOString().split('T')[0];
+
+    const alreadyExists = entries.some(entry => entry.date === entryDate && (!editingEntry || entry.id !== editingEntry.id));
+    if (alreadyExists) {
+      alert("An entry already exists for this day. Please come back tomorrow!");
+      setIsLoading(false);
+      return;
+    }
+
     const newEntry = {
+      ...editingEntry,
       ...entryData,
-      id: Date.now(),
-      date: entryData.date || new Date().toISOString().split('T')[0],
-      image: entryData.image || "https://via.placeholder.com/150",
+      id: editingEntry ? editingEntry.id : Date.now(),
+      date: entryDate,
+      image: entryData.image || "https://picsum.photos/1024/1024",
       content: entryData.content || "No content provided",
     };
 
@@ -40,10 +50,10 @@ export default function App() {
         entry.id === editingEntry.id ? newEntry : entry
       );
       setEntries(updatedEntries);
-      setEditingEntry(null);
     } else {
       setEntries([...entries, newEntry]);
     }
+    setShowAddModal(false);
   };
 
   const handleSelectEntry = (entry) => {
@@ -71,9 +81,13 @@ export default function App() {
             <EntryList entries={entries} onEntryClick={handleSelectEntry} />
             <AddEntryModal 
               visible={showAddModal}
-              onClose={() => setShowAddModal(false)} 
+              onClose={() => {
+                setShowAddModal(false);
+                setEditingEntry(null);
+              }}
               handleSubmit={handleAddEntry}
               setIsLoading={setIsLoading}
+              editingEntry={showAddModal ? editingEntry : null}
             />
             { showViewModal && (
               <ViewEntryModal 
@@ -81,6 +95,9 @@ export default function App() {
                 visible={showViewModal}
                 onClose={() => setShowViewModal(false)} 
                 setEntries={setEntries}
+                setShowAddModal={setShowAddModal}
+                setShowViewModal={setShowViewModal}
+                setEditingEntry={setEditingEntry}
               />
             )}
           </div>

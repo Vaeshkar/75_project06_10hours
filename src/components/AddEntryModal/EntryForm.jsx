@@ -1,17 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function EntryForm({ onSubmit, onCancel, setIsLoading }) {
+export default function EntryForm({ onSubmit, onCancel, setIsLoading, editingEntry }) {
     const [title, setTitle] = useState('');
     const [date, setDate] = useState('');
     const [image, setImage] = useState('');
     const [content, setContent] = useState('');
 
+    useEffect(() => {
+        if (editingEntry) {
+            setTitle(editingEntry.title || '');
+            setDate(editingEntry.date || '');
+            setImage(editingEntry.image || '');
+            setContent(editingEntry.content || '');
+        }
+    }, [editingEntry]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsLoading(true);
         setTimeout(() => {
-            if (title && date && image && content) {
-                onSubmit({ title, date, image, content });
+            if (title && date && content) {
+                onSubmit({ title, date, image: image || "https://picsum.photos/1024/1024", content });
                 setTitle('');
                 setDate('');
                 setImage('');
@@ -59,7 +68,13 @@ export default function EntryForm({ onSubmit, onCancel, setIsLoading }) {
             </p>
             <div className="flex justify-end space-x-2">
                 <button type="button" onClick={onCancel} className="font-bold border-4 border-black bg-yellow-400 text-black hover:text-yellow-400 hover:bg-black transition-all pointer-cursor px-8 py-4 rounded-3xl duration-300 ease-in-out" style={{ fontSize: '4vw' }}>Cancel</button>
-                <button type="submit" className="font-bold border-4 border-black bg-yellow-400 text-black hover:text-yellow-400 hover:bg-black  transition-all pointer-cursor px-8 py-4 rounded-3xl duration-300 ease-in-out" style={{ fontSize: '4vw' }}>Add Entry</button>
+                <button
+                    type="submit"
+                    className="font-bold border-4 border-black bg-yellow-400 text-black hover:text-yellow-400 hover:bg-black  transition-all pointer-cursor px-8 py-4 rounded-3xl duration-300 ease-in-out"
+                    style={{ fontSize: '4vw' }}
+                >
+                    {editingEntry ? 'Save Entry' : 'Add Entry'}
+                </button>
             </div>
         </form>
     </div>

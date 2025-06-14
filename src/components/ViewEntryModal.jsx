@@ -1,6 +1,6 @@
 import EntryDetails from './ViewEntryModal/EntryDetails';
 
-export default function ViewEntryModal({ entry, onClose, setEntries }) {
+export default function ViewEntryModal({ entry, onClose, setEntries, setShowAddModal, setShowViewModal, setEditingEntry }) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/60">
         <div className="absolute right-30 top-30 scale-300 z-20">
@@ -11,6 +11,16 @@ export default function ViewEntryModal({ entry, onClose, setEntries }) {
         </div>
       <div className="bg-white rounded-4xl shadow-lg p-6 w-3/4 h-[60vh] overflow-y-auto max-w-6xl relative">
         <EntryDetails entry={entry} onClose={onClose} />
+        <div className="flex justify-end space-x-2">
+            <button onClick={() => {
+              setShowViewModal(false);
+              setShowAddModal(true);
+              setTimeout(() => setEditingEntry(entry), 0);
+            }} className="absolute bottom-6 right-70 font-bold bg-yellow-400 text-black hover:text-yellow-400 hover:bg-black hover:scale-110 transition-all pointer-cursor px-8 py-4 rounded-3xl duration-300 ease-in-out" style={{ fontSize: '4vw' }}>
+                Edit
+            </button>
+
+        </div>
         <button className='absolute bottom-6 right-6 font-bold bg-yellow-400 text-black hover:text-yellow-400 hover:bg-black hover:scale-110 transition-all pointer-cursor px-8 py-4 rounded-3xl duration-300 ease-in-out'
           onClick={() => {
             setEntries(prev => prev.filter(e => e.id !== entry.id));
