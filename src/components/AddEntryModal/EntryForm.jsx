@@ -12,6 +12,11 @@ export default function EntryForm({ onSubmit, onCancel, setIsLoading, editingEnt
             setDate(editingEntry.date || '');
             setImage(editingEntry.image || '');
             setContent(editingEntry.content || '');
+        } else {
+            setTitle('');
+            setDate('');
+            setImage('');
+            setContent('');
         }
     }, [editingEntry]);
 
