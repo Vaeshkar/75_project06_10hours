@@ -8,6 +8,7 @@ import EntryList from './components/EntryList';
 import AddEntryModal from './components/AddEntryModal';
 import ViewEntryModal from './components/ViewEntryModal';
 import LoadingScreen from './components/LoadingScreen';
+import AlertBox from './components/Alert/AlertBox';
 
 
 export default function App() {
@@ -20,10 +21,19 @@ export default function App() {
   const [showViewModal, setShowViewModal] = useState(false);
   const [editingEntry, setEditingEntry] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [alerts, setAlerts] = useState([]);
 
   useEffect(() => {
     localStorage.setItem("entries", JSON.stringify(entries));
   }, [entries]);
+
+  const addAlert = (message) => {
+  const id = Date.now();
+  setAlerts(prev => [...prev, { id, message }]);
+  setTimeout(() => {
+    setAlerts(prev => prev.filter(alert => alert.id !== id));
+  }, 3000);
+};
 
   const handleAddEntry = (entryData) => {
     setIsLoading(true); // Start loading animation
@@ -31,7 +41,7 @@ export default function App() {
 
     const alreadyExists = entries.some(entry => entry.date === entryDate && (!editingEntry || entry.id !== editingEntry.id));
     if (alreadyExists) {
-      alert("An entry already exists for this day. Please come back tomorrow!");
+      addAlert("An entry already exists for this day. Please come back tomorrow!");
       setIsLoading(false);
       return;
     }
@@ -70,6 +80,21 @@ export default function App() {
 
   return (
     <>
+        {/* <button
+          onClick={() => addAlert("Test alert message! To see how long it stays and grows with a lot of text and how it looks when you click on it.")}
+          className="fixed top-4 left-4 z-70 bg-blue-500 text-white px-4 py-2 rounded-lg"
+        >
+          Show Test Alert
+        </button> */}
+      <div className="fixed top-4 right-4 z-60 flex flex-col gap-4 items-end">
+      {alerts.map(alert => (
+        <AlertBox
+          key={alert.id}
+          message={alert.message}
+          onClose={() => setAlerts(prev => prev.filter(a => a.id !== alert.id))}
+        />
+      ))}
+    </div>
       <div className="max-w-[1200px] mx-auto px-4">
         {loadingScreen}
         <Header onAddEntry={() => {
