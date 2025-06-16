@@ -80,12 +80,12 @@ export default function App() {
 
   return (
     <>
-        {/* <button
+        <button
           onClick={() => addAlert("Test alert message! To see how long it stays and grows with a lot of text and how it looks when you click on it.")}
-          className="fixed top-4 left-4 z-70 bg-blue-500 text-white px-4 py-2 rounded-lg"
+          className="fixed top-8 left-12 z-70 bg-black text-white px-4 py-2 rounded-lg cursor-pointer"
         >
           Show Test Alert
-        </button> */}
+        </button>
       <div className="fixed top-4 right-4 z-60 flex flex-col gap-4 items-end">
       {alerts.map(alert => (
         <AlertBox

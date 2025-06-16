@@ -18,7 +18,7 @@ export default function EntryList({ entries, onEntryClick }) {
     }, [entries]);
 
     if (entries.length === 0) {
-        return <p className='text-center text-black'>No entries yet...</p>
+        return <p className='text-center text-yellow-500 text-[6vw] font-bold bagel-fat-one-regular uppercase leading-[.8]'>No entries yet...</p>
     }
 
     return (
